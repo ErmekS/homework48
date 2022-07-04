@@ -57,3 +57,11 @@ def update_product(request, pk):
             product.save()
             return redirect("product_view", pk=product.pk)
         return render(request, "update.html", {"form": form})
+
+def delete_product(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    if request.method == "GET":
+        pass
+    else:
+        product.delete()
+        return redirect("index")
